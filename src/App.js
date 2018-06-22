@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import {Router, Route} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+import Main from "./containers/Main";
+import Artist from "./containers/Artist";
+import Chart from "./containers/Chart";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+
+        this.history = createBrowserHistory();
+        this.history.listen(() => {
+            window.scrollTo(0,0);
+        });
+    }
+
+    render() {
+        return (
+            <Router history={this.history}>
+                <div className="wrapper">
+                    <Header />
+
+                    <div className="inner">
+                        <Route exact path="/" component={Main}/>
+                        <Route path="/music/:artist" component={Artist}/>
+                        {/*<Route exact path="/music/:artist/:track" component={Track}/>*/}
+                        <Route exact path="/chart" component={Chart}/>
+                    </div>
+
+                    <footer className="footer">
+                        <div className="container">
+                            Footer
+                        </div>
+                    </footer>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;

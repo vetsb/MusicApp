@@ -1,0 +1,7 @@
+export const GET_TOP_TRACKS = "GET_TOP_TRACKS";
+export const SET_TOP_TRACKS = "SET_TOP_TRACKS";
+export const GET_TRACKS_BY_ARTIST_ID = "GET_TRACKS_BY_ARTIST_ID";
+export const SET_TRACKS_BY_ARTIST_ID = "SET_TRACKS_BY_ARTIST_ID";
+
+export const GET_ARTIST = "GET_ARTIST";
+export const SET_ARTIST = "SET_ARTIST";

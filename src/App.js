@@ -33,7 +33,7 @@ class App extends Component {
                             <Route path="/chart" component={Chart}/>
                             <Route path="/album/:albumId" component={Album}/>
                             <Route path="/tag/:tag" component={Tag}/>
-                            <Route path="/search" component={Search}/>
+                            {/*<Route path="/search" component={Search}/>*/}
                             <Route component={Error404}/>
                         </Switch>
                     </div>

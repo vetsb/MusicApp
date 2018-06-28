@@ -29,7 +29,11 @@ export default (state = {}, action) => {
                             response.results.trackmatches.track[key].artistMbid = artistResponse.artist.mbid;
 
                             if (key === response.results.trackmatches.track.length - 1) {
-                                store.dispatch(setSearchTracks(response.results.trackmatches.track));
+                                if (Object.keys(response.results.trackmatches.track).length === 0) {
+                                    store.dispatch(setSearchTracks([]));
+                                } else {
+                                    store.dispatch(setSearchTracks(response.results.trackmatches.track));
+                                }
                             }
                         });
                     });

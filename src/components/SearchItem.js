@@ -10,7 +10,7 @@ class SearchItem extends Component {
         let content = null;
 
         switch(this.props.type) {
-            case "track":
+            case "tracks":
                 content = (
                     <div className="search__dropdown_info">
                         <div className="search__dropdown_name">{item.name}</div>
@@ -24,7 +24,7 @@ class SearchItem extends Component {
                     </div>
                 );
                 break;
-            case "artist":
+            case "artists":
                 content = (
                     <div className="search__dropdown_info">
                         <div className="search__dropdown_artist">
@@ -38,7 +38,7 @@ class SearchItem extends Component {
                 );
                 break;
             default:
-            case "album":
+            case "albums":
                 content = (
                     <div className="search__dropdown_info">
                         <div className="search__dropdown_name">

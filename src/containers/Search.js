@@ -5,6 +5,7 @@ import {NavLink, Route, Router, withRouter} from "react-router-dom";
 import {getAlbumById} from "../actions/album";
 import store from '../store';
 import SearchTracks from '../components/Search/SearchTracks';
+import SearchMain from "../components/Search/SearchMain";
 
 class Search extends Component {
     constructor() {
@@ -12,8 +13,13 @@ class Search extends Component {
 
         this.tabs = [
             {
-                title: "Треки",
+                title: "Все",
                 link: "",
+                component: SearchMain
+            },
+            {
+                title: "Треки",
+                link: "/tracks",
                 component: SearchTracks
             },
             {

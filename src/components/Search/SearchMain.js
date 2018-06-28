@@ -4,9 +4,8 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import store from '../../store';
 import {searchTracks} from "../../actions/searchTracks";
-import SearchItem from "../SearchItem";
 
-class SearchTracks extends Component {
+class SearchMain extends Component {
     constructor() {
         super();
 
@@ -27,18 +26,17 @@ class SearchTracks extends Component {
         } else {
             params = JSON.parse('{"' + decodeURI(this.props.location.search.substr(1)).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 
-            this.props.searchTracks(params.q, 20);
+            this.props.searchTracks(params.q);
 
             this.unsubscribe = store.subscribe(() => {
-                console.log("Subscribe", store.getState());
-
                 this.setState({
-                    searchTracks: Object.keys(store.getState().searchTracks).length === 0 ? [] : store.getState().searchTracks,
+                    searchTracks: store.getState().searchTracks,
                     loading: false,
                     query: params.q
                 });
             });
         }
+
     }
 
     componentWillUnmount() {
@@ -46,8 +44,6 @@ class SearchTracks extends Component {
     }
 
     render() {
-        console.log(this.state);
-
         if (!this.state.loading && this.state.query === "") {
             return (
                 <div className="search__results">
@@ -80,11 +76,7 @@ class SearchTracks extends Component {
 
         return (
             <div className="search__results">
-                <div className="search__dropdown_items">
-                    {this.state.searchTracks.map((item, key) => {
-                        return <SearchItem item={item} key={key} type="track" onLinkClick={this.togglePage}/>
-                    })}
-                </div>
+                Все ответы
             </div>
         );
     }
@@ -98,4 +90,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({searchTracks: searchTracks}, dispatch);
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchTracks));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchMain));

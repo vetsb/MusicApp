@@ -59,16 +59,14 @@ class Header extends Component {
             const artists = Object.keys(storeState.searchArtists).length === 0 ? [] : storeState.searchArtists;
             const albums = Object.keys(storeState.searchAlbums).length === 0 ? [] : storeState.searchAlbums;
 
-            if (this.state.searchQuery !== query) {
-                this.setState({
-                    searchQuery: query,
-                    searchTracks: tracks,
-                    searchArtists: artists,
-                    searchAlbums: albums,
-                });
+            this.setState({
+                searchQuery: query,
+                searchTracks: tracks,
+                searchArtists: artists,
+                searchAlbums: albums,
+            });
 
-                this.showDropdown();
-            }
+            this.showDropdown();
         });
     };
 
@@ -105,7 +103,7 @@ class Header extends Component {
                                 justify="center">
                                 <TextField
                                     placeholder="Поиск музыки"
-                                    onChange={(e) => this.searchWithDelay(this.search, e.target.value)}/>
+                                    onKeyUp={(e) => this.searchWithDelay(this.search, e.target.value)}/>
                                 <Button style={{marginLeft: 10}} variant="contained" color="primary" onClick={() => this.search()}>Найти</Button>
                             </Grid>
 
@@ -114,9 +112,9 @@ class Header extends Component {
                                     <div className="search__dropdown_not-found">Ничего не найдено.</div>
                                 ) : (
                                     <div>
-                                        <div className="search__dropdown_show-all">
-                                            <Link to={"/search?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все результаты поиска</Link>
-                                        </div>
+                                        {/*<div className="search__dropdown_show-all">*/}
+                                            {/*<Link to={"/search?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все результаты поиска</Link>*/}
+                                        {/*</div>*/}
                                         <div className="search__dropdown_groups">
                                             { this.state.searchTracks.length !== 0 ? (
                                                 <div className="search__dropdown_group search__dropdown_group--tracks" ref="searchTracks">
@@ -126,9 +124,9 @@ class Header extends Component {
                                                             return <SearchItem item={item} key={key} type="track" onLinkClick={this.togglePage}/>
                                                         })}
                                                     </div>
-                                                    <div className="search__dropdown_show-all">
-                                                        <Link to={"/search/tracks?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все треки</Link>
-                                                    </div>
+                                                    {/*<div className="search__dropdown_show-all">*/}
+                                                        {/*<Link to={"/search/tracks?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все треки</Link>*/}
+                                                    {/*</div>*/}
                                                 </div>
                                             ) : null}
 
@@ -140,9 +138,9 @@ class Header extends Component {
                                                             return <SearchItem item={item} key={key} type="artist" onLinkClick={this.togglePage}/>
                                                         })}
                                                     </div>
-                                                    <div className="search__dropdown_show-all">
-                                                        <Link to={"/search/artists?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть всех исполнителей</Link>
-                                                    </div>
+                                                    {/*<div className="search__dropdown_show-all">*/}
+                                                        {/*<Link to={"/search/artists?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть всех исполнителей</Link>*/}
+                                                    {/*</div>*/}
                                                 </div>
                                             ) : null}
 
@@ -154,9 +152,9 @@ class Header extends Component {
                                                             return <SearchItem item={item} key={key} type="album" onLinkClick={this.togglePage}/>
                                                         })}
                                                     </div>
-                                                    <div className="search__dropdown_show-all">
-                                                        <Link to={"/search/albums?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все альбомы</Link>
-                                                    </div>
+                                                    {/*<div className="search__dropdown_show-all">*/}
+                                                        {/*<Link to={"/search/albums?q=" + this.state.searchQuery} onClick={() => this.togglePage()}>Смотреть все альбомы</Link>*/}
+                                                    {/*</div>*/}
                                                 </div>
                                             ) : null}
                                         </div>

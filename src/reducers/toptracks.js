@@ -24,12 +24,14 @@ export default (state = {}, action) => {
             return action.payload;
 
         case types.GET_TRACKS_BY_ARTIST_ID:
-            new Api({
+            let query = {
                 method: "artist.getTopTracks",
                 page: 1,
-                limit: 5,
-                mbid: action.payload.id
-            }, response => {
+                mbid: action.payload.id,
+                limit: action.payload.count
+            };
+
+            new Api(query, response => {
                 store.dispatch(setTracksByArtistId(response.toptracks.track, response.toptracks["@attr"]));
             });
 

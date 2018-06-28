@@ -19,11 +19,12 @@ export const setTopTracks = (tracks, attr) => {
     }
 };
 
-export const getTracksByArtistId = (id) => {
+export const getTracksByArtistId = (id, count) => {
     return {
         type: types.GET_TRACKS_BY_ARTIST_ID,
         payload: {
-            id: id
+            id: id,
+            count: count
         }
     }
 };

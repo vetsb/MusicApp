@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, NavLink, Route, Router} from "react-router-dom";
+import {Link, NavLink, Route, Router, withRouter} from "react-router-dom";
 import createBrowserHistory from 'history/createBrowserHistory';
 import ArtistTracks from "../components/Artist/ArtistTracks";
 import ArtistMain from "../components/Artist/ArtistMain";
@@ -7,6 +7,9 @@ import bindActionCreators from "redux/src/bindActionCreators";
 import {connect} from "react-redux";
 import {getArtist} from "../actions/artist";
 import store from '../store';
+import ArtistAlbums from "../components/Artist/ArtistAlbums";
+import ArtistSimilar from "../components/Artist/ArtistSimilar";
+import ArtistInfo from "../components/Artist/ArtistInfo";
 
 class Artist extends Component {
     constructor() {
@@ -32,31 +35,33 @@ class Artist extends Component {
             {
                 title: "Альбомы",
                 link: "albums",
-                component: ArtistMain
+                component: ArtistAlbums
             },
             {
                 title: "Похожие",
                 link: "similar",
-                component: ArtistMain
+                component: ArtistSimilar
             },
             {
                 title: "Инфо",
                 link: "info",
-                component: ArtistMain
+                component: ArtistInfo
             },
         ];
+    }
+
+    componentWillReceiveProps() {
+        window.scrollTo(0, 0);
     }
 
     componentDidMount() {
         this.props.getArtist(this.props.match.params.artist);
 
         this.unsubscribe = store.subscribe(() => {
-            if (Object.keys(store.getState().artist).length > 0) {
-                this.setState({
-                    artist: store.getState().artist,
-                    loading: false,
-                })
-            }
+            this.setState({
+                artist: store.getState().artist,
+                loading: false,
+            });
         });
     }
 
@@ -114,7 +119,7 @@ class Artist extends Component {
                         </div>
                     </div>
 
-                    <Router history={this.history}>
+                    <Router history={this.props.history}>
                         <div className="artist__tabs">
                             <div className="artist__nav">
                                 <ul className="tabs">
@@ -154,4 +159,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({getArtist: getArtist}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Artist)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Artist));

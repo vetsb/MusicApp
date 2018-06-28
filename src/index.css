@@ -7,7 +7,6 @@
 
 body {
     margin: 0;
-    padding: 70px 0 0;
 }
 
 .container {
@@ -26,7 +25,7 @@ body {
 }
 
 .inner {
-    padding: 40px 0 0;
+    padding: 110px 0 50px;
     flex: 1;
 }
 
@@ -35,6 +34,52 @@ body {
     color: #999;
     text-align: center;
     padding: 20px;
+}
+
+.btn {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    outline: none;
+    text-align: center;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding-top: 2px;
+}
+
+.btn > span {
+    width: 100%;
+}
+
+.btn--black {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    width: 222px;
+    height: 52px;
+    background: #000000;
+}
+
+.btn--black:hover {
+    background: #080808;
 }
 
 .header {
@@ -69,15 +114,119 @@ body {
     justify-content: center;
 }
 
+.search {
+    position: relative;
+}
+
 .search input {
     width: 400px;
+}
+
+.search__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 400px;
+    background: #FFF;
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 80vh;
+}
+
+.search__dropdown._open {
+    display: block;
+}
+
+.search__dropdown h3 {
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 10px;
+    padding: 0 15px;
+}
+
+.search__dropdown_show-all a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 14px;
+    padding: 0 15px;
+    background: #f1f1f1;
+}
+
+.search__dropdown_show-all a:hover {
+    color: #FF3333;
+}
+
+.search__dropdown_groups {
+    margin-top: 15px;
+}
+
+.search__dropdown_group {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.search__dropdown_group:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.search__dropdown_items {
+     margin-bottom: 15px;
+}
+
+.search__dropdown_item {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.search__dropdown_item:last-child {
+    margin-bottom: 0;
+}
+
+.search__dropdown_image {
+    margin-right: 10px;
+}
+
+.search__dropdown_image img {
+    display: block;
+    max-width: 100%;
+}
+
+.search__dropdown_name {
+    font-size: 14px;
+}
+
+.search__dropdown_artist {
+    font-size: 14px;
+    color: #777777;
+}
+
+.search__dropdown_not-found {
+    text-align: center;
+    padding: 15px 0;
+    color: #777777;
+    font-size: 14px;
+    line-height: 18px;
 }
 
 .toptracks__top {
     margin-bottom: 40px;
 }
 
-.toptracks__top h2 {
+.toptracks__top h1 {
     margin: 0 0 10px;
 }
 
@@ -107,6 +256,11 @@ body {
 .toptracks__items {
     columns: 2;
     column-gap: 20px;
+}
+
+.toptracks__items._onecolumn {
+    columns: 1;
+    column-gap: 0px;
 }
 
 .toptracks__image img {
@@ -146,22 +300,18 @@ body {
     text-decoration: underline;
 }
 
-.toptracks__name {
-    margin-bottom: 3px;
-}
-
 .toptracks__name a {
     font-size: 18px;
     color: #000000;
 }
 
+.toptracks__artist {
+    margin-top: 3px;
+}
+
 .toptracks__artist a {
     font-size: 16px;
     color: #777777;
-}
-
-.artist {
-
 }
 
 .artist__top {
@@ -192,10 +342,11 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .artist__tag {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .artist__tag a {
@@ -211,6 +362,14 @@ body {
 
 .artist__tag:last-child {
     margin-right: 0;
+}
+
+.artist__content {
+    margin-top: 20px;
+}
+
+.artist__content h2 {
+    margin-top: 0;
 }
 
 .tabs {
@@ -248,4 +407,121 @@ body {
 
 .tabs a.active {
     border-bottom-color: #FF3333;
+}
+
+.albums__items {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -15px -30px;
+}
+
+.albums__item {
+    width: 25%;
+    padding: 0 15px 30px;
+}
+
+.albums__item a {
+    text-decoration: none;
+}
+
+.albums__item a:hover h3 {
+    color: #FF3333;
+}
+
+.albums__image {
+    margin-bottom: 12px;
+}
+
+.albums__image img {
+    max-width: 100%;
+    display: block;
+}
+
+.albums__item h3 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+}
+
+
+
+
+.similar__items {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -15px -30px;
+}
+
+.similar__item {
+    width: 33.3%;
+    padding: 0 15px 30px;
+}
+
+.similar__item a {
+    text-decoration: none;
+    border: 1px solid #dbdbdb;
+    display: block;
+    padding: 20px
+}
+
+.similar__item a:hover h3 {
+    color: #FF3333;
+}
+
+.similar__image {
+    margin-bottom: 12px;
+    padding: 0 30px;
+}
+
+.similar__image img {
+    max-width: 100%;
+    display: block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.similar__item h3 {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+}
+
+.artist__text_inner {
+    font-size: 16px;
+    line-height: 30px;
+    color: #000000;
+    display: none;
+}
+
+.artist__text_inner--summary {
+    display: block;
+}
+
+.artist__text_inner--hide {
+    display: none;
+}
+
+.artist__text_inner--show {
+    display: block;
+}
+
+.artist__text_show-full {
+    margin-top: 25px;
+}
+
+.artist__text_show-full--hide {
+    display: none;
+}
+
+.tag__content {
+    padding-top: 20px;
 }

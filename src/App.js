@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from "./components/Header";
-import {Router, Route} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Main from "./containers/Main";
 import Artist from "./containers/Artist";
 import Chart from "./containers/Chart";
+import Tag from "./containers/Tag";
+import Album from "./containers/Album";
+import Error404 from "./errors/Error404";
+import Search from "./containers/Search";
 
 class App extends Component {
     constructor() {
@@ -23,17 +27,16 @@ class App extends Component {
                     <Header />
 
                     <div className="inner">
-                        <Route exact path="/" component={Main}/>
-                        <Route path="/music/:artist" component={Artist}/>
-                        {/*<Route exact path="/music/:artist/:track" component={Track}/>*/}
-                        <Route exact path="/chart" component={Chart}/>
+                        <Switch>
+                            <Route exact path="/" component={Main}/>
+                            <Route path="/music/:artist" component={Artist}/>
+                            <Route path="/chart" component={Chart}/>
+                            <Route path="/album/:albumId" component={Album}/>
+                            <Route path="/tag/:tag" component={Tag}/>
+                            <Route path="/search" component={Search}/>
+                            <Route component={Error404}/>
+                        </Switch>
                     </div>
-
-                    <footer className="footer">
-                        <div className="container">
-                            Footer
-                        </div>
-                    </footer>
                 </div>
             </Router>
         );

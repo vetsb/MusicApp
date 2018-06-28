@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {getTracksByArtistId} from "../../actions/toptracks";
 import store from '../../store';
+import TopTrack from "../TopTrack";
 
 class ArtistMain extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class ArtistMain extends Component {
     }
 
     componentDidMount() {
-        this.props.getTracksByArtistId(this.props.artist.mbid);
+        this.props.getTracksByArtistId(this.props.artist.mbid, 5);
 
         this.unsubscribe = store.subscribe(() => {
             if (Object.keys(store.getState().toptracks.tracks).length > 0) {
@@ -30,11 +31,23 @@ class ArtistMain extends Component {
     }
 
     render() {
-        return this.state.tracks.map((item, key) => {
+        if (Object.keys(this.state.tracks).length === 0) {
             return (
-                <div key={key}>{item.name}</div>
-            )
-        });
+                <div>
+                    <h2>Популярные треки</h2>
+                    <div className="loading">Загрузка...</div>
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                <h2>Популярные треки</h2>
+                {this.state.tracks.map((item, key) => {
+                    return <TopTrack track={item} key={key} index={key} />
+                })}
+            </div>
+        )
     }
 }
 

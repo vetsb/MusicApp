@@ -1,6 +1,6 @@
 import * as types from "../constants/ActionTypes";
 import store from '../store';
-import Api from "../Api";
+import Api from "../utils/Api";
 import {setSimilarByArtistId} from "../actions/similar";
 
 export default (state = {}, action) => {

@@ -1,7 +1,7 @@
 import * as types from "../constants/ActionTypes";
 import store from '../store';
 import {setTopTracks, setTracksByArtistId} from "../actions/toptracks";
-import Api from "../Api";
+import Api from "../utils/Api";
 
 export default (state = {}, action) => {
     switch (action.type) {

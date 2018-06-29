@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import Api from "../Api";
+import Api from "../utils/Api";
 import {setSearchTracks} from "../actions/searchTracks";
 import store from '../store';
 

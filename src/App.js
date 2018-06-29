@@ -8,7 +8,6 @@ import Chart from "./containers/Chart";
 import Tag from "./containers/Tag";
 import Album from "./containers/Album";
 import Error404 from "./errors/Error404";
-import Search from "./containers/Search";
 
 class App extends Component {
     constructor() {

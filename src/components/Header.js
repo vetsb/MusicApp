@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core';
-import TextField from "@material-ui/core/es/TextField/TextField";
+import { TextField, Grid, Button } from 'material-ui';
 import {Link, withRouter} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -104,7 +103,7 @@ class Header extends Component {
                                 <TextField
                                     placeholder="Поиск музыки"
                                     onKeyUp={(e) => this.searchWithDelay(this.search, e.target.value)}/>
-                                <Button style={{marginLeft: 10}} variant="contained" color="primary" onClick={() => this.search()}>Найти</Button>
+                                <Button style={{marginLeft: 10}} variant="raised" color="primary" onClick={() => this.search()}>Найти</Button>
                             </Grid>
 
                             <div className="search__dropdown" ref="dropdown">

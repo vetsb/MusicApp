@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import Api from "../Api";
+import Api from "../utils/Api";
 import store from '../store';
 import {setSearchArtists} from "../actions/searchArtists";
 
